@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Grade Checker</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 500px;
+            margin: 20px auto;
+            padding: 20px;
+            text-align: center;
+            background-color: #f4f4f4;
+        }
+        .grade-checker-container {
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            box-sizing: border-box;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        #result {
+            margin-top: 20px;
+            padding: 10px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        .success {
+            background-color: #dff0d8;
+            color: #3c763d;
+        }
+        .failure {
+            background-color: #f2dede;
+            color: #a94442;
+        }
+    </style>
+</head>
+<body>
+    <div class="grade-checker-container">
+        <h2>Student Grade Checker</h2>
+        <p>Check if student gets A+ grade</p>
+        
+        <input 
+            type="number" 
+            id="totalMarks" 
+            placeholder="Enter Total Marks" 
+            min="0" 
+            max="100"
+        >
+        
+        <select id="examType">
+            <option value="regular">Regular Exam</option>
+            <option value="final-exam">Final Exam</option>
+        </select>
+        
+        <button onclick="checkGrade()">Check Grade</button>
+        
+        <div id="result"></div>
+    </div>
+
+    <script>
+        function checkGrade() {
+            
+            const totalMarks = parseFloat(document.getElementById('totalMarks').value);
+            const examType = document.getElementById('examType').value;
+            const resultDiv = document.getElementById('result');
+
+          
+            if (isNaN(totalMarks) || totalMarks < 0 || totalMarks > 100) {
+                resultDiv.innerHTML = 'Please enter a valid mark between 0 and 100';
+                resultDiv.className = 'result failure';
+                return;
+            }
+
+          
+            let isAPlus = false;
+            
+            if (examType === 'regular') {
+                
+                isAPlus = totalMarks >= 89 && totalMarks <= 100;
+            } else {
+                
+                isAPlus = totalMarks >= 90;
+            }
+
+           
+            if (isAPlus) {
+                resultDiv.innerHTML = `
+                    Congratulations! 🎉<br>
+                    Exam Type: ${examType === 'regular' ? 'Regular' : 'Final'}<br>
+                    Total Marks: ${totalMarks}<br>
+                    Grade: A+
+                `;
+                resultDiv.className = 'result success';
+            } else {
+                resultDiv.innerHTML = `
+                    Sorry! 📊<br>
+                    Exam Type: ${examType === 'regular' ? 'Regular' : 'Final'}<br>
+                    Total Marks: ${totalMarks}<br>
+                    Grade: Not A+
+                `;
+                resultDiv.className = 'result failure';
+            }
+        }
+    </script>
+</body>
+</html>

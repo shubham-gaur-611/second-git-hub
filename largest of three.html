@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Largest Number Finder</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 400px;
+            margin: 20px auto;
+            padding: 20px;
+            text-align: center;
+            background-color: #f4f4f4;
+        }
+        .calculator-container {
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            box-sizing: border-box;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        #result {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #e7f3fe;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="calculator-container">
+        <h2>Largest Number Finder</h2>
+        <input type="number" id="number1" placeholder="Enter first number">
+        <input type="number" id="number2" placeholder="Enter second number">
+        <input type="number" id="number3" placeholder="Enter third number">
+        <button onclick="findLargestNumber()">Find Largest</button>
+        <div id="result"></div>
+    </div>
+
+    <script>
+        function findLargestNumber() {
+           
+            const num1 = parseFloat(document.getElementById('number1').value);
+            const num2 = parseFloat(document.getElementById('number2').value);
+            const num3 = parseFloat(document.getElementById('number3').value);
+            const resultDiv = document.getElementById('result');
+
+           
+            if (isNaN(num1) || isNaN(num2) || isNaN(num3)) {
+                resultDiv.innerHTML = 'Please enter valid numbers for all three inputs';
+                return;
+            }
+
+          
+            const largestNumber = Math.max(num1, num2, num3);
+
+         
+            let largestNumberManual;
+            if (num1 >= num2 && num1 >= num3) {
+                largestNumberManual = num1;
+            } else if (num2 >= num1 && num2 >= num3) {
+                largestNumberManual = num2;
+            } else {
+                largestNumberManual = num3;
+            }
+
+            resultDiv.innerHTML = `
+                Numbers Entered: ${num1}, ${num2}, ${num3}<br>
+                Largest Number: ${largestNumber}<br>
+                (Verified by manual comparison: ${largestNumberManual})
+            `;
+        }
+    </script>
+</body>
+</html>

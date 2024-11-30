@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Number Difference Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 400px;
+            margin: 20px auto;
+            padding: 20px;
+            text-align: center;
+            background-color: #f4f4f4;
+        }
+        .calculator-container {
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            box-sizing: border-box;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        #result {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #e7f3fe;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="calculator-container">
+        <h2>Number Difference Calculator</h2>
+        <p>Calculate the difference from 13</p>
+        <input type="number" id="numberInput" placeholder="Enter a number">
+        <button onclick="calculateDifference()">Calculate</button>
+        <div id="result"></div>
+    </div>
+
+    <script>
+        function calculateDifference() {
+            
+            const number = parseFloat(document.getElementById('numberInput').value);
+            const resultDiv = document.getElementById('result');
+
+           
+            if (isNaN(number)) {
+                resultDiv.innerHTML = 'Please enter a valid number';
+                return;
+            }
+
+        
+            let difference;
+            if (number <= 13) {
+               
+                difference = 13 - number;
+            } else {
+               
+                difference = (number - 13) * 2;
+            }
+
+           
+            resultDiv.innerHTML = `
+                Input Number: ${number}<br>
+                Difference from 13: ${difference}
+            `;
+        }
+    </script>
+</body>
+</html>

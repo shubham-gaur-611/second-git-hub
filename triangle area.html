@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Triangle Area Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 400px;
+            margin: 20px auto;
+            padding: 20px;
+            text-align: center;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        #result {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #f1f1f1;
+        }
+    </style>
+</head>
+<body>
+    <h2>Triangle Area Calculator</h2>
+    <input type="number" id="side1" placeholder="Enter Length of Side 1" required>
+    <input type="number" id="side2" placeholder="Enter Length of Side 2" required>
+    <input type="number" id="side3" placeholder="Enter Length of Side 3" required>
+    <button onclick="calculateArea()">Calculate Area</button>
+    <div id="result"></div>
+
+    <script>
+        function calculateArea() {
+           
+            const side1 = parseFloat(document.getElementById('side1').value);
+            const side2 = parseFloat(document.getElementById('side2').value);
+            const side3 = parseFloat(document.getElementById('side3').value);
+
+           
+            if (isNaN(side1) || isNaN(side2) || isNaN(side3)) {
+                document.getElementById('result').innerHTML = 'Please enter valid numbers for all sides.';
+                return;
+            }
+
+           
+            if (side1 + side2 <= side3 || side1 + side3 <= side2 || side2 + side3 <= side1) {
+                document.getElementById('result').innerHTML = 'These side lengths cannot form a valid triangle.';
+                return;
+            }
+
+           
+            const s = (side1 + side2 + side3) / 2;
+
+           
+            const area = Math.sqrt(s * (s - side1) * (s - side2) * (s - side3));
+
+          
+            document.getElementById('result').innerHTML = 
+                `Triangle Area: ${area.toFixed(2)} square units<br>` +
+                `Sides: ${side1}, ${side2}, ${side3}`;
+        }
+    </script>
+</body>
+</html>
